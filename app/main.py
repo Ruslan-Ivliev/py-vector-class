@@ -8,16 +8,24 @@ class Vector:
         self.point_y = round(point_y, 2)
 
     def __add__(self, other: "Vector") -> "Vector":
-        return Vector(self.point_x + other.point_x, self.point_y + other.point_y)
+        return Vector(
+            self.point_x + other.point_x, self.point_y + other.point_y
+        )
 
     def __sub__(self, other: "Vector") -> "Vector":
-        return Vector(self.point_x - other.point_x, self.point_y - other.point_y)
+        return Vector(
+            self.point_x - other.point_x, self.point_y - other.point_y
+        )
 
     def __mul__(self, other: Union[float, "Vector"]) -> Union[float, "Vector"]:
         if isinstance(other, (int, float)):
-            return Vector(round(self.point_x * other, 2), round(self.point_y * other, 2))
+            return Vector(
+                round(self.point_x * other, 2), round(self.point_y * other, 2)
+            )
         elif isinstance(other, Vector):
-            dot_product = self.point_x * other.point_x + self.point_y * other.point_y
+            dot_product = (
+                self.point_x * other.point_x + self.point_y * other.point_y
+            )
             return dot_product
         else:
             raise TypeError("Multiplication with unsupported type")
