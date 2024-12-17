@@ -8,7 +8,7 @@ class Vector:
         self.point_y = round(point_y, 2)
 
     def __add__(self, other: "Vector") -> "Vector":
-        return Vector(self.point_x + other.point_x, self.point_y + other.y)
+        return Vector(self.point_x + other.point_x, self.point_y + other.point_y)
 
     def __sub__(self, other: "Vector") -> "Vector":
         return Vector(self.point_x - other.point_x, self.point_y - other.point_y)
@@ -23,11 +23,12 @@ class Vector:
             raise TypeError("Multiplication with unsupported type")
 
     @classmethod
-    def create_vector_by_two_points(cls, start_point: Tuple[float, float],
-                                    end_point: Tuple[float, float]) -> "Vector":
-        point_x = end_point[0] - start_point[0]
-        point_y = end_point[1] - start_point[1]
-        return cls(point_x, point_y)
+    def create_vector_by_two_points(
+        cls, start_point: Tuple[float, float], end_point: Tuple[float, float]
+    ) -> "Vector":
+        vector_x = end_point[0] - start_point[0]
+        vector_y = end_point[1] - start_point[1]
+        return cls(vector_x, vector_y)
 
     def get_length(self) -> float:
         return math.sqrt(self.point_x ** 2 + self.point_y ** 2)
@@ -54,6 +55,10 @@ class Vector:
 
     def rotate(self, degrees: int) -> "Vector":
         radians = math.radians(degrees)
-        new_x = self.point_x * math.cos(radians) - self.point_y * math.sin(radians)
-        new_y = self.point_x * math.sin(radians) + self.point_y * math.cos(radians)
+        new_x = (
+            self.point_x * math.cos(radians) - self.point_y * math.sin(radians)
+        )
+        new_y = (
+            self.point_x * math.sin(radians) + self.point_y * math.cos(radians)
+        )
         return Vector(new_x, new_y)
